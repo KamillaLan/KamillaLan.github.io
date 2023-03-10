@@ -1,0 +1,314 @@
+
+
+
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    
+  }
+
+  body {
+    margin: 0;
+}
+
+p {
+  font-size: 2vw;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+
+h1 {
+  font-size: 3vw;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* NAV BAR START */
+ 
+header {
+  background: rgb(96, 147, 172);
+  text-align:center;
+  position: fixed;
+  /* <-index passer på at den alltid er på toppen av alt annet */ 
+  z-index: 999;
+  width: 100%;
+}
+
+#logo {
+  width: auto;
+  height: 13vh;
+}
+
+nav {
+    position: absolute;
+    text-align: left;
+    top: 100%;
+    left: 0;
+    background-color: rgb(96, 147, 172);
+    width: 100%;
+    display: none;
+    
+    /* top og left gjør at jeg har mer kontroll på hvor den står noe jeg manglet kontroll på tidligere */
+
+}
+
+nav ul {
+   margin: 0; 
+   padding: 0;
+   list-style: none;
+}
+
+nav li {
+    margin-bottom: 1em;
+    margin-left: 1em;
+
+     /* sprer teksten inni litt fra hverandre */
+}
+
+nav a {
+    color:white;
+    text-decoration: none;
+    font-size: 1.5vw;
+    text-transform: uppercase;
+   
+}
+
+nav a:hover {
+    color: black;
+}
+
+/* ser etter en nav*/  
+.nav-toggle:checked ~ nav {
+display: block;
+}
+
+.nav-toggle {
+    display:none;
+}
+
+/* plasserer nedtrekningsknappen der jeg vil ha den */
+.nav-toggle-label {
+    position: absolute;
+    top: 0;
+    left:0;
+    margin-left: 1em; 
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+/* jeg vil forandre på flere samtidig */
+.nav-toggle-label span,
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+    display: block;
+    background: white;
+    height: 2px;
+    width: 2em;
+    border-radius: 2px;
+    position: relative;
+}
+
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+    content: '' ;
+    position: absolute;
+
+}
+
+
+.nav-toggle-label span::before {
+    bottom: 7px;
+}
+
+.nav-toggle-label span::after {
+    top: 7px;
+}
+
+/* når skjermen blir mindre kommer dra ned baren der */
+@media screen and (min-width: 800px) {
+    .nav-toggle-label {
+      display: none;
+    }
+
+
+
+
+header {
+    display: grid;
+    grid-template-columns: 1fr auto minmax(600px, 3fr) 1fr;
+    grid-template-rows: 1fr;
+}
+
+.logo {
+    grid-column: 2 / 3;
+}
+
+ 
+
+nav {
+    all: unset; 
+    grid-column: 3 / 4;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
+
+  nav ul {
+    display: flex;
+  }
+  
+  nav li {
+    margin-left: 3em;
+    margin-bottom: 0;
+  }
+  
+  nav a {
+    opacity: 1;
+    position: relative;
+  }
+
+  
+  /* møtte på et problem her og begynte bli trøtt i hodet så la til fra hjelp på nett så fiksa det seg */
+  
+  nav a::before {
+    content: '';
+    display: block;
+    height: 5px;
+    background: black;
+    position: absolute;
+    top: -.75em;
+    left: 0;
+    right: 0;
+    transform: scale(0, 1);
+    transition: transform ease-in-out 250ms;
+  }
+  
+  nav a:hover::before {
+    transform: scale(1,1);
+  }
+
+}
+
+/* NAV BAR SLUTT */
+
+
+
+.container {  display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr;
+    gap: 7px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "NAVBAR NAVBAR NAVBAR NAVBAR"
+      "Åpningsbilde Åpningsbilde Åpningsbilde Åpningsbilde"
+      "bilde1 bilde1 tekst tekst"
+      "arbeider-1 tekst-1 kontakt-informasjon kontakt-informasjon"
+      "arbeider-2 tekst-2 kontakt-informasjon kontakt-informasjon"
+      "arbeider-3 tekst-3 kontakt-informasjon kontakt-informasjon"
+      "arbeider-4 tekst-4 kontakt-informasjon kontakt-informasjon"
+      "footer footer footer footer";
+  }
+  
+  .NAVBAR { grid-area: NAVBAR}
+  
+  .Åpningsbilde { grid-area: 1 / 1 / 1 / 5; }
+
+  .bilde1 { grid-area: 2 / 1 / 2 / 2;
+height: 20em; 
+width: 20em;
+margin: 30%;
+}
+
+
+
+
+  
+  .tekst { grid-area: 2 / 2 / 2 / 5;
+    margin: 10%;
+    
+ }
+  
+  .arbeider-1 { grid-area: 3 / 1 / 3 / 2;
+    margin: 20%;
+    border: 0.5em pink dashed;
+    
+ }
+  
+  .tekst-1 { grid-area: 3 / 2 / 3 / 3;
+    margin:10% }
+  
+  .arbeider-2 { grid-area: 4 / 1 / 4 / 2 ;
+    margin: 20%;
+    border: 0.5em pink dashed; }
+  
+  .tekst-2 { grid-area: 4 / 2 / 4 / 3; 
+    margin:10% }
+  
+  .arbeider-3 {  grid-area: 5 / 1 / 5 / 2 ;
+    margin: 20%;
+    height: 70%;
+    border: 0.5em pink dashed; }
+  
+  .tekst-3 { grid-area: 5 / 2 / 5 / 3; 
+    margin:10%;
+    
+  }
+  
+  .kontakt-informasjon { grid-area: 3 / 3 / 5 / 5;
+    background-color: bisque;
+    margin: 10%;
+    padding: 5%;
+    font-size: 2em;
+   
+ }
+  
+
+ .kontakt {
+    padding: 5%;
+
+ }
+
+  .footer { grid-area: 6 / 1 / 9 / 5;
+    color: rgba(0, 0, 0, 0.932);
+    
+    background-color: burlywood;
+    
+    display: flex;
+    justify-content: space-between;
+  
+  }
+
+#merkevare {
+ margin-left: 5%;
+}
+
+#copyright {
+  text-align: center;
+  }
+  
+  #dato {
+    margin-right: 5%;
+    }
+  
+  
+ img  {
+    height: 100%;
+    width: 100%;
+  }
+
+  
+  .centered {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: navy;
+    text-shadow: 0.3vw 0.3vw  rgb(168, 168, 223);
+  }
+
+  .oppgave {
+    font-weight: bold;
+  }
+  
